@@ -23,7 +23,7 @@ The objectives of this project are:
 2. **ResNet34 (Transfer Learning)**  
    A ResNet34 model pretrained on ImageNet, utilized to improve generalization capability and classification accuracy.
 
-The trained models are stored in `.pth` format and managed using Git Large File Storage (Git LFS).
+The trained models are stored in `.pth` format.
 
 ---
 
