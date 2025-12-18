@@ -1,0 +1,16 @@
+# model
+*.pth
+*.pt
+*.h5
+*.ckpt
+
+# env
+.env
+
+# python
+__pycache__/
+.ipynb_checkpoints/
+
+# os
+.DS_Store
+
