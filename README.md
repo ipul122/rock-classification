@@ -86,3 +86,17 @@ streamlit run host1.py
 This project was developed as part of the assessment for the Deep Learning course and aims to demonstrate the student’s understanding of deep learning implementation, particularly convolutional neural networks and transfer learning techniques, applied to rock image classification.
 
 ---
+
+## LLM Usage Notice
+
+This application integrates a Large Language Model (LLM) for geological explanation purposes.
+
+⚠️ **Important Notice**  
+Users are required to provide their **own Groq API token** to enable LLM functionality.  
+The API key is **not included** in this repository for security and privacy reasons.
+
+Before running the application, please set your Groq API key as an environment variable:
+
+```bash
+export GROQ_API_KEY="your_own_api_key_here"
+
