@@ -86,7 +86,3 @@ streamlit run host1.py
 This project was developed as part of the assessment for the Deep Learning course and aims to demonstrate the student’s understanding of deep learning implementation, particularly convolutional neural networks and transfer learning techniques, applied to rock image classification.
 
 ---
-
-## Notes
-Large model files are managed using Git Large File Storage (Git LFS) to ensure repository stability and efficiency.
-
