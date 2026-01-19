@@ -127,7 +127,8 @@ def load_model(model_choice):
     return model, transform
 
 # LLM
-client = Groq(api_key="GROQ_API_KEY")
+client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
+
 
 def ask_llm(pred_batu):
     prompt = f"""
