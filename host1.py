@@ -133,14 +133,14 @@ client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 def ask_llm(pred_batu):
     prompt = f"""
     Jelaskan ciri fisik, sifat fisik, proses keterbentukan, dan mineral penyusun
-    dari batuan {pred_batu}. Gunakan bahasa Indonesia namun akademis Geologi.
+    dari batuan {pred_batu}. Gunakan bahasa Indonesia secara akademis Geologi.
     Fokuskan proses keterbentukan. Maksimal 200 kata.
     """
 
     response = client.chat.completions.create(
         model="llama-3.1-8b-instant",
         messages=[{"role": "user", "content": prompt}],
-        temperature=0.3
+        temperature=0.15
     )
     return response.choices[0].message.content
 
@@ -163,15 +163,13 @@ model, transform = load_model(model_choice)
 st.title("Rock Classification")
 st.caption(f"Active Model : **{model_choice}**")
 
-# UPLOAD IMAGE
-import numpy as np
 
 if menu == "Upload":
     file = st.file_uploader("Upload Rock Image", type=["jpg", "png", "jpeg"])
 
     if file:
         img = Image.open(file).convert("RGB")
-        st.image(img, width=300, caption="Gambar Input")
+        st.image(img, width=300, caption="Input")
 
         img_tensor = transform(img).unsqueeze(0).to(device)
 
@@ -186,7 +184,7 @@ if menu == "Upload":
         pred_batu = classes[pred_idx]
         confidence = probabilities[pred_idx]
 
-        st.success(f"Prediksi Utama: **{pred_batu}** ({confidence*100:.2f}%)")
+        st.success(f"Predict: **{pred_batu}** ({confidence*100:.2f}%)")
       
         st.subheader("📉 Confidence")
 
@@ -194,15 +192,15 @@ if menu == "Upload":
             st.write(f"**{classes[i]}** — {probabilities[i]*100:.2f}%")
             st.progress(float(probabilities[i]))
 
-        st.subheader("📚 Penjelasan Geologi")
-        with st.spinner("Memuat penjelasan..."):
+        st.subheader("📚 Explanation")
+        with st.spinner("Loading..."):
             st.write(ask_llm(pred_batu))
 
 else:
 
-    st.subheader("📷 Ambil Foto Batuan")
+    st.subheader("📷 Take a Photo")
 
-    photo = st.camera_input("Klik untuk mengambil foto")
+    photo = st.camera_input("Click to take photo")
 
     if photo is not None:
         img = Image.open(photo).convert("RGB")
@@ -221,14 +219,14 @@ else:
         pred_batu = classes[pred_idx]
         confidence = probabilities[pred_idx]
 
-        st.success(f"Prediksi : **{pred_batu}** ({confidence*100:.2f}%)")
+        st.success(f"Predict: **{pred_batu}** ({confidence*100:.2f}%)")
 
         st.subheader("📉 Confidence")
         for i in top_indices:
             st.write(f"**{classes[i]}** — {probabilities[i]*100:.2f}%")
             st.progress(float(probabilities[i]))
 
-        st.subheader("📚 Penjelasan Geologi")
-        with st.spinner("Memuat penjelasan..."):
+        st.subheader("📚 Explanation")
+        with st.spinner("Loading..."):
             st.write(ask_llm(pred_batu))
 
