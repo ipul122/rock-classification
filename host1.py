@@ -1,3 +1,6 @@
+import os
+os.system("git lfs pull")
+
 import streamlit as st
 import numpy as np
 import torch
@@ -5,8 +8,9 @@ import torch.nn as nn
 from torchvision import models, transforms
 from PIL import Image
 from groq import Groq
-from streamlit_webrtc import webrtc_streamer, VideoTransformerBase
 import cv2
+
+
 
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
